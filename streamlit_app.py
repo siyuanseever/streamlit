@@ -45,7 +45,8 @@ st.write("You're scheduled for:", appointment)
 st.subheader('Datetime slider')
 start_time = st.slider(
     "When do you start?",
-    datetime.datetime(2000, 1, 1), datetime.datetime(2050, 1, 1), datetime.datetime(2025, 1, 1),
+    datetime.datetime(2000, 1, 1), datetime.datetime(
+        2050, 1, 1), datetime.datetime(2025, 1, 1),
     format="MM/DD/YY - hh:mm")
 st.write("Start time:", start_time)
 
@@ -82,7 +83,7 @@ st.write('You selected:', options)
 
 
 st.header('st.checkbox')
-st.write ('What would you like to order?')
+st.write('What would you like to order?')
 icecream = st.checkbox('Ice cream')
 coffee = st.checkbox('Coffee')
 cola = st.checkbox('Cola')
@@ -116,8 +117,8 @@ st.write('Selected number from slider widget is:', number)
 st.title('st.secrets')
 st.write('st.secrets[message]:', st.secrets['message'])
 st.write(
-	"Has environment variables been set:",
-	os.environ["USER"] == st.secrets['username'])
+    "Has environment variables been set:",
+    os.environ["USER"] == st.secrets['username'])
 
 
 st.title('st.file_uploader')
@@ -135,30 +136,33 @@ else:
 
 st.title('How to layout your Streamlit app')
 with st.expander('About this app(st.expander)'):
-    st.write('This app shows the various ways on how you can layout your Streamlit app.')
+    st.write(
+        'This app shows the various ways on how you can layout your Streamlit app.')
     st.image('https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png', width=250)
 
 st.sidebar.header('Input(st.sidebar)')
 user_name = st.sidebar.text_input('What is your name?(st.sidebar.text_input)')
-user_emoji = st.sidebar.selectbox('Choose an emoji', ['', '😄', '😆', '😊', '😍', '😴', '😕', '😱'])
-user_food = st.sidebar.selectbox('What is your favorite food?', ['', 'Tom Yum Kung', 'Burrito', 'Lasagna', 'Hamburger', 'Pizza'])
+user_emoji = st.sidebar.selectbox(
+    'Choose an emoji', ['', '😄', '😆', '😊', '😍', '😴', '😕', '😱'])
+user_food = st.sidebar.selectbox('What is your favorite food?', [
+                                 '', 'Tom Yum Kung', 'Burrito', 'Lasagna', 'Hamburger', 'Pizza'])
 st.header('Output(st.columns)')
 col1, col2, col3 = st.columns(3)
 with col1:
-  if user_name != '':
-    st.write(f'👋 Hello {user_name}!')
-  else:
-    st.write('👈  Please enter your **name**!')
+    if user_name != '':
+        st.write(f'👋 Hello {user_name}!')
+    else:
+        st.write('👈  Please enter your **name**!')
 with col2:
-  if user_emoji != '':
-    st.write(f'{user_emoji} is your favorite **emoji**!')
-  else:
-    st.write('👈 Please choose an **emoji**!')
+    if user_emoji != '':
+        st.write(f'{user_emoji} is your favorite **emoji**!')
+    else:
+        st.write('👈 Please choose an **emoji**!')
 with col3:
-  if user_food != '':
-    st.write(f'🍴 **{user_food}** is your favorite **food**!')
-  else:
-    st.write('👈 Please choose your favorite **food**!')
+    if user_food != '':
+        st.write(f'🍴 **{user_food}** is your favorite **food**!')
+    else:
+        st.write('👈 Please choose your favorite **food**!')
 
 st.title('st.progress')
 my_bar = st.progress(0)
@@ -179,10 +183,14 @@ with st.form('my_form'):
 
     # Input widgets
     coffee_bean_val = st.selectbox('Coffee bean', ['Arabica', 'Robusta'])
-    coffee_roast_val = st.selectbox('Coffee roast', ['Light', 'Medium', 'Dark'])
-    brewing_val = st.selectbox('Brewing method', ['Aeropress', 'Drip', 'French press', 'Moka pot', 'Siphon'])
-    serving_type_val = st.selectbox('Serving format', ['Hot', 'Iced', 'Frappe'])
-    milk_val = st.select_slider('Milk intensity', ['None', 'Low', 'Medium', 'High'])
+    coffee_roast_val = st.selectbox(
+        'Coffee roast', ['Light', 'Medium', 'Dark'])
+    brewing_val = st.selectbox(
+        'Brewing method', ['Aeropress', 'Drip', 'French press', 'Moka pot', 'Siphon'])
+    serving_type_val = st.selectbox(
+        'Serving format', ['Hot', 'Iced', 'Frappe'])
+    milk_val = st.select_slider(
+        'Milk intensity', ['None', 'Low', 'Medium', 'High'])
     owncup_val = st.checkbox('Bring own cup')
 
     # Every form must have a submit button
@@ -249,11 +257,13 @@ st.title('st.cache')
 b0 = time.time()
 st.subheader('Not using st.cache_data')
 
+
 def load_data_b():
     df = pd.DataFrame(
         np.random.rand(2000000, 5),
     )
     return df
+
 
 load_data_b()
 b1 = time.time()
@@ -263,12 +273,14 @@ st.info(b1-b0)
 a0 = time.time()
 st.subheader('Using st.cache_data')
 
+
 @st.cache_data()
 def load_data_a():
     df = pd.DataFrame(
         np.random.rand(2000000, 5),
     )
     return df
+
 
 load_data_a()
 a1 = time.time()
@@ -277,17 +289,21 @@ st.info(a1-a0)
 ###################################################################################################
 st.title('st.session_state')
 
+
 def lbs_to_kg():
-  st.session_state.kg = st.session_state.lbs/2.2046
+    st.session_state.kg = st.session_state.lbs/2.2046
+
+
 def kg_to_lbs():
-  st.session_state.lbs = st.session_state.kg*2.2046
+    st.session_state.lbs = st.session_state.kg*2.2046
+
 
 st.header('Input')
-col1, spacer, col2 = st.columns([2,1,2])
+col1, spacer, col2 = st.columns([2, 1, 2])
 with col1:
-  pounds = st.number_input("Pounds:", key = "lbs", on_change = lbs_to_kg)
+    pounds = st.number_input("Pounds:", key="lbs", on_change=lbs_to_kg)
 with col2:
-  kilogram = st.number_input("Kilograms:", key = "kg", on_change = kg_to_lbs)
+    kilogram = st.number_input("Kilograms:", key="kg", on_change=kg_to_lbs)
 
 st.header('Output')
 st.write("st.session_state object:", st.session_state)
@@ -303,4 +319,3 @@ with col3:
     st.metric(label="收入", value="$8000", delta="+$500")
 
 ###################################################################################################
-
